@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   ingresar(proovedor) {
 
-    this._cs.login();
+    this._cs.login(proovedor);
 
   }
 

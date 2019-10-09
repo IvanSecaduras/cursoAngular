@@ -34,7 +34,12 @@ export class ChatService {
   }
 
   login(proovedor:string) {
-    this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
+
+    if(proovedor === 'google'){
+      this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
+    }else{
+      this.afAuth.auth.signInWithPopup(new auth.TwitterAuthProvider());
+    }
   }
   logout() {
     this.usuario = {};
@@ -62,7 +67,7 @@ export class ChatService {
   agregarMensaje( texto:string ) {
 
     let mensaje: MensajeInterface = {
-      nombre: 'Demo',
+      nombre: this.usuario.nombre,
       mensaje: texto,
       fecha: new Date().getTime(),
       uid: this.usuario.uid,
